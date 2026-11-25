@@ -1,9 +1,13 @@
 def sum_exp():
-    s:float = 0.0
+    s: float = 0.0
+
     with open("expenses.txt", "r") as f:
         for line in f:
             price = line.strip().rsplit("|", 1)[-1]
-            if not(price.isdecimal()):
+
+            try:
+                s += float(price)
+            except ValueError:
                 continue
-            s += float(price)
-    print ("Your total expense is : ",s)
+
+    print("Your total expense is:", s)
